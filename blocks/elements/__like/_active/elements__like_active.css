@@ -1,0 +1,7 @@
+.elements__like_active:active {
+  opacity: 1;
+  background-image: url(../../../../images/Union.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
