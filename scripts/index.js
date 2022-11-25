@@ -1,26 +1,25 @@
 let btnEdit = document.querySelector('.profile__edit');
 let btnClose = document.querySelector('.popup__close');
 let popup = document.querySelector('.popup');
+let nameInput = document.querySelector('.popup__input_name');  
+let startInputName = document.querySelector('.profile__title');
+let jobInput = document.querySelector('.popup__input_job');
+let startInputJob = document.querySelector('.profile__subtitle');
 
-
- btnEdit.addEventListener('click', function () {
+//Open popup 
+btnEdit.addEventListener('click', function () {
   popup.classList.add('popup__opened');
+  nameInput.value = startInputName.textContent;
+  jobInput.value = startInputJob.textContent;
 });
 
+//Close popup
 btnClose.addEventListener('click', function (event) {
   event.preventDefault();
   popup.classList.remove('popup__opened');
+  nameInput.value = startInputName.textContent;
+  jobInput.value = startInputJob.textContent;
 });
-
-
-//Add title and subtitle in inputs.
-let nameInput = document.querySelector('.popup__input_name');  
-let startInputName = document.querySelector('.profile__title');
-nameInput.value = startInputName.textContent;
-
-let jobInput = document.querySelector('.popup__input_job');
-let startInputJob = document.querySelector('.profile__subtitle');
-jobInput.value = startInputJob.textContent;
 
 //Add text from popup to html.
 function handleFormSubmit (evt) {

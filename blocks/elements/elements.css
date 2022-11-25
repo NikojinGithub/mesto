@@ -3,10 +3,28 @@
   /*height: 800px;*/
   margin: 50px auto 0;
   display: grid;
-  /*grid-template-columns: repeat(3, fit-content(282px));
-  grid-template-rows: repeat(2, fit-content(361px));*/
   grid-template-columns: repeat(3, 282px);
   grid-template-rows: repeat(2, 361px);
-  border: 1px solid white;
+  /*border: 1px solid white;*/
   gap: 20px 17px;
+}
+
+@media screen and (max-width: 888px) {
+  .elements {
+    grid-template-columns: repeat(2, 282px);
+    grid-template-rows: repeat(3, 361px);
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 585px) {
+  .elements {
+    grid-template-columns: 282px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .elements {
+    margin-top: 36px;
+  }
 }
