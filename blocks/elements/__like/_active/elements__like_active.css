@@ -1,4 +1,4 @@
-.elements__like_active:active {
+.elements__like_active:disabled {
   opacity: 1;
   background-image: url(../../../../images/Union.svg);
   background-position: center;
