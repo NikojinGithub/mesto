@@ -9,4 +9,7 @@
   pointer-events: none;  /*Hide popup*/
   /*display: none;*/
   transition: .5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

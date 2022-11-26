@@ -2,29 +2,34 @@
   width: 358px;
   min-height: 50px;
   border: none;
-  margin: 48px auto 37px;
+  margin: 48px 36px 37px;
   padding: 0;
   background-color: black;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  text-align: center;
   color: #FFFFFF;
   cursor: pointer;
   transition: .3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /*display: flex;*/
+  /*justify-content: center;
+  align-items: center;*/
+  border-radius: 2px;
+  
 }
 
 .popup__button:hover {
-  opacity: .6;
+  opacity: .8;
 }
 
 @media screen and (max-width: 768px) {
   .popup__button {
     width: 238px;
     min-height: 46px;
-    margin: 45px auto 25px;   
+    margin: 45px 22px 25px; 
+    font-size: 14px;
+    line-height: 17px;  
   }
 }

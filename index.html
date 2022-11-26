@@ -15,55 +15,51 @@
         <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit">
-            <img class="profile__edit-image" src="./images/Vector__profile.svg" alt="Изменить">
-          </button>
-          <h2 class="profile__subtitle">Исследователь океана</h2>
+          <button class="profile__edit" type="button" aria-label="Button for edit profile"></button>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__add-button">
-          <img class="profile__add-image" src="./images/plus_buttom.svg" alt="Добавить"> 
-        </button>
+        <button class="profile__add-button" type="button" aria-label="Button for add pictures"></button>
       </section>
       <section class="elements">
         <div class="elements__item">
           <img class="elements__photo" src="./images/Эверест.jpg" alt="Эверест">
           <div class="elements__caption">
             <h2 class="elements__text">Гора Эверест</h2>
-            <button class="elements__like elements__like_active"></button>
+            <button class="elements__like elements__like_active" type="button" aria-label="Button for like"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__photo" src="./images/Ачипсинские.jpg" alt="Водопад">
           <div class="elements__caption">
             <h2 class="elements__text">Ачипсинские водопады</h2>
-            <button class="elements__like elements__like_active"></button>
+            <button class="elements__like elements__like_active" type="button" aria-label="Button for like"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__photo" src="./images/K2.jpg" alt="Чогори">
           <div class="elements__caption">
             <h2 class="elements__text">Гора Чогори</h2>
-            <button class="elements__like elements__like_active"></button>
+            <button class="elements__like elements__like_active" type="button" aria-label="Button for like"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__photo" src="./images/Бзерпинский.jpg" alt="Бзерпинский карниз">
           <div class="elements__caption">
             <h2 class="elements__text">Бзерпинский карниз</h2>
-            <button class="elements__like elements__like_active"></button>
+            <button class="elements__like elements__like_active" type="button" aria-label="Button for like"></button>
           </div>
         </div>
         <div class="elements__item">
           <img class="elements__photo" src="./images/Эльбрус.jpg" alt="Эльбрус">
           <div class="elements__caption">
             <h2 class="elements__text">Гора Эльбрус</h2>
-            <button class="elements__like elements__like_active"></button>
+            <button class="elements__like elements__like_active" type="button" aria-label="Button for like"></button>
           </div></div>
         <div class="elements__item">
           <img class="elements__photo" src="./images/Донбай.png" alt="Донбай">
           <div class="elements__caption">
             <h2 class="elements__text">Донбай</h2>
-            <button class="elements__like elements__like_active"></button>
+            <button class="elements__like elements__like_active" type="button" aria-label="Button for like"></button>
           </div>
         </div>
       </section>
@@ -72,17 +68,15 @@
       <p class="footer__text" >© 2020 Mesto Russia</p>
     </footer>
     <div class="popup">
-      <form class="popup__container">
+      <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <div class="popup__table">
-          <input class="popup__input popup__input_name" type="text" placeholder="Жак-Ив Кусто" name="name">
-          <input class="popup__input popup__input_job" type="text" placeholder="Исследователь океана" name="job">
-        </div>
-        <button class="popup__button">Сохранить</button>
-        <button class="popup__close">
-          <img class="popup__close-img" src="./images/CloseIcon.svg" alt="Закрыть">
-        </button>
-      </form>
+        <button class="popup__close" type="button" aria-label="Button for close popup"></button>
+        <form class="popup__form" name="popupForm">
+          <input class="popup__input popup__input_type_name" type="text" placeholder="Жак-Ив Кусто" name="name">
+          <input class="popup__input popup__input_type_job" type="text" placeholder="Исследователь океана" name="job">
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
