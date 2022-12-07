@@ -33,6 +33,25 @@ function handleFormSubmit (evt) {
 
 popupForm.addEventListener ('submit', handleFormSubmit);
 
+//5 sprint
+
+let btnAdd = document.querySelector('.profile__add-button');
+let popupImg = document.querySelector('.popup-img');
+let btnCloseImg = document.querySelector('.popup__close-img');
+
+//open popupImg
+function openPopup () {
+  popupImg.classList.add('popup-img_opened');
+}
+
+btnAdd.addEventListener('click', openPopup);
+
+//close popupImg
+function closePopup () {
+  popupImg.classList.remove('popup-img_opened');
+}
+
+btnCloseImg.addEventListener('click', closePopup);
 
 
 
