@@ -20,7 +20,21 @@
         </div>
         <button class="profile__add-button" type="button" aria-label="Кнопка для добавления изображений"></button>
       </section>
-      <section class="elements">
+      <!-- Start Блок с изображения для JS-->
+      <section class = "elements">
+        <template id = "elements__item">
+          <div class="elements__item">
+            <button class="elements__delete" type="button" aria-label="Кнопка для удаления элемента"></button>
+            <img class="elements__photo" src="#" alt="">
+            <div class="elements__caption">
+              <h2 class="elements__text"></h2>
+              <button class="elements__like" type="button" aria-label="Кнопка нравится"></button>
+            </div>
+          </div>
+        </template>
+      </section>
+      <!--End-->
+      <!--section class="elements">
         <div class="elements__item">
           <img class="elements__photo" src="./images/Эверест.jpg" alt="Эверест">
           <div class="elements__caption">
@@ -62,7 +76,7 @@
             <button class="elements__like elements__like_active" type="button" aria-label="Кнопка нравится"></button>
           </div>
         </div>
-      </section>
+      </section-->
     </main>
     <footer class="footer">
       <p class="footer__text" >© 2020 Mesto Russia</p>
@@ -83,8 +97,8 @@
         <h2 class="popup__title-img">Новое место</h2>
         <button class="popup__close-img" type="button" aria-label="Кнопка для закрытия всплывающего окна"></button>
         <form class="popup__form-img" name="popupForm">
-          <input class="popup__input-img" type="text" placeholder="Название" name="name-img">
-          <input class="popup__input-img" type="text" placeholder="Ссылка на картинку" name="link">
+          <input class="popup__input-img popup__input_type_nameImg" type="text" placeholder="Название" name="name-img">
+          <input class="popup__input-img popup__input_type_link" type="text" placeholder="Ссылка на картинку" name="link">
           <button class="popup__button-img" type="submit">Создать</button>
         </form>
       </div>
