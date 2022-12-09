@@ -103,6 +103,7 @@ const Listeners = (elementItem) => {
   return elementItem;
 };
 
+//--------------------add image block--------------------------------------------
 initialCards.forEach((item) => {                                                                //Добавляет карточку и разметку в нее из массива initialCards.
   const elementItem = imageTemplate.content.querySelector('.elements__item').cloneNode(true);
     elementItem.querySelector('.elements__photo').src = item.link;                               ////Добавил src  из массива = последний элемент += все эелементы
@@ -112,6 +113,28 @@ initialCards.forEach((item) => {                                                
    Listeners(elementItem);
    sectionElements.append(elementItem);
 });
+//-------------------------add card----------------------------------------------------
+function handleFormSubmitImg (evt) {
+  evt.preventDefault();
+  const elementItem = imageTemplate.content.querySelector('.elements__item').cloneNode(true);
+   elementItem.querySelector('.elements__text').textContent  = nameInputImg.value;
+   elementItem.querySelector('.elements__photo').src = linkInput.value;
+   elementItem.querySelector('.elements__photo').alt  = nameInputImg.value;
+   sectionElements.prepend(elementItem); 
+   nameInputImg.value = '';
+   linkInput.value = '';
+   closePopupImg();
+   Listeners(elementItem);
+};
+
+popupFormImg.addEventListener ('submit', handleFormSubmitImg);
+
+
+
+
+
+
+
 
 // const createElement = (item) => {
  //  const elementItem = imageTemplate.content.querySelector('.elements__item').cloneNode(true);
@@ -134,39 +157,6 @@ initialCards.forEach((item) => {                                                
 // });
 
 //--------------------------------------------------------------------------------------------
-function handleFormSubmitImg (evt) {
-  evt.preventDefault();
-  const elementItem = imageTemplate.content.querySelector('.elements__item').cloneNode(true);
-   elementItem.querySelector('.elements__text').textContent  = nameInputImg.value;
-   elementItem.querySelector('.elements__photo').src = linkInput.value;
-   elementItem.querySelector('.elements__photo').alt  = nameInputImg.value;
-   sectionElements.prepend(elementItem); 
-   nameInputImg.value = '';
-   linkInput.value = '';
-   closePopupImg();
-   Listeners(elementItem);
-  //const like = elementItem.querySelector('.elements__like');
-  //const likeElement = () => like.classList.toggle('elements__like_active');
-  //like.addEventListener('click', likeElement);
-
-  //const deleteBtn = elementItem.querySelector('.elements__delete');
- // const deleteImg = () => deleteBtn.closest('.elements__item').remove();
-  //deleteBtn.addEventListener('click', deleteImg);
-}
-
-popupFormImg.addEventListener ('submit', handleFormSubmitImg);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //--------------------Добавление элементов --------------------------
