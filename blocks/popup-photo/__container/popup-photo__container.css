@@ -1,0 +1,13 @@
+.popup-photo__container {
+  /* max-width: 75vw; */
+  /* max-height: 562px; */
+  /* border: 1px solid white; */
+  /* background-color: white; */
+  position: relative;
+}
+
+/* @media screen and (max-width: 768px) {
+  .popup-photo__container {
+    width: 282px;
+  }
+} */

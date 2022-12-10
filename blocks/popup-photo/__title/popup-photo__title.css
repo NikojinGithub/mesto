@@ -1,0 +1,19 @@
+.popup-photo__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 10px 0 0 0;
+  color: white;
+  /* position: absolute; */
+  /* left: 0; */
+  /* bottom: -100px; */
+}
+
+/* @media screen and (max-width: 768px) { */
+  /* .popup-photo__title { */
+    /* font-size: 18px; */
+    /* line-height: 22px; */
+    /* margin: 25px 22px 75px; */
+  /* } */
+/* } */

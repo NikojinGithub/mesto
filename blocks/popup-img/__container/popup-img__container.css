@@ -1,4 +1,4 @@
-.popup__container-img {
+.popup-img__container {
   width: 430px;
   /*border: 1px solid white;*/
   border-radius: 10px;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .popup__container-img {
+  .popup-img__container {
     width: 282px;
   }
 }

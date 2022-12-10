@@ -1,4 +1,4 @@
-.popup__button-img {
+.popup-img__button {
   width: 358px;
   min-height: 50px;
   border: none;
@@ -20,12 +20,12 @@
   
 }
 
-.popup__button-img:hover {
+.popup-img__button:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 768px) {
-  .popup__button-img {
+  .popup-img__button {
     width: 238px;
     min-height: 46px;
     margin: 45px 22px 25px;

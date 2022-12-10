@@ -1,4 +1,4 @@
-.popup__input-img {
+.popup-img__input {
   padding: 0;
   border: none;
   border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -11,16 +11,16 @@
   line-height: 17px;
 }
 
-.popup__input-img:last-of-type {
+.popup-img__input:last-of-type {
   margin-top: 30px;
 }
 
-.popup__input-img:focus {
+.popup-img__input:focus {
   outline: none;
 }
 
 @media screen and (max-width: 768px) {
-  .popup__input-img {
+  .popup-img__input {
     width: 238px;
     margin-left: 22px;
   }
