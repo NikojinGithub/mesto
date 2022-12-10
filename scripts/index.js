@@ -32,6 +32,8 @@ function handleFormSubmit (evt) {
 }
 
 popupForm.addEventListener ('submit', handleFormSubmit);
+
+
 //--------------------------------------------------------------
 //----------------5 sprint---------------------------------------
 //----------------------------------------------------------------
@@ -65,7 +67,7 @@ btnCloseImg.addEventListener('click', closePopupImg);
 const initialCards = [
   {
     name: 'Эверест',
-    link: '../images/Эверест.jpg'
+    link: 'https://images.unsplash.com/photo-1575819719798-83d97dd6949c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80'
   },
   {
     name: 'Ачипсинские водопады',
@@ -73,7 +75,7 @@ const initialCards = [
   },
   {
     name: 'Гора Чогори',
-    link: '../images/K2.jpg'
+    link: 'https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
   },
   {
     name: 'Бзерпинский карниз',
@@ -81,11 +83,11 @@ const initialCards = [
   },
   {
     name: 'Гора Эльбрус',
-    link: '../images/Эльбрус.jpg'
+    link: 'https://images.unsplash.com/photo-1638989420853-a6437f7a0d2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80'
   },
   {
-    name: 'Донбай',
-    link: '../images/Донбай.png'
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
 ];
 
@@ -115,12 +117,6 @@ const Listeners = (elementItem) => {    //--Кнопки лайк, удалит�
   return elementItem;
 };
 
-// initialCards.forEach((item) => {    
-//   const popupPhoto = document.querySelector('.popup-photo');
-//    let text = popupPhoto.querySelector('.popup-photo__title').textContent = item.name;
-//    let img =  popupPhoto.querySelector('.popup-photo__image').src = item.link;
-//     console.log(text);
-// });
 
 //--------------------add image block--------------------------------------------
 initialCards.forEach((item) => {                                                                //Добавляет карточку и разметку в нее из массива initialCards.
@@ -129,11 +125,6 @@ initialCards.forEach((item) => {                                                
     elementItem.querySelector('.elements__photo').alt  = item.name;
     elementItem.querySelector('.elements__text').textContent  = item.name;
   
-    const popupPhoto = document.querySelector('.popup-photo');
-    popupPhoto.querySelector('.popup-photo__title').textContent = item.name;
-    popupPhoto.querySelector('.popup-photo__image').src = item.link;
-
-
    sectionElements.append(elementItem);
    Listeners(elementItem);
 });
@@ -146,19 +137,7 @@ function handleFormSubmitImg (evt) {
    elementItem.querySelector('.elements__photo').src = linkInput.value;
    elementItem.querySelector('.elements__photo').alt  = nameInputImg.value;
    sectionElements.prepend(elementItem); 
-   //-----------------------------------------------------------------------
-  //  const btnOpenPopup = document.querySelectorAll('.elements__button-img');
    
-  // //  function openPopupPhoto () {
-  // //   popupPhoto.classList.add('popup-photo_opened');
-  // // }
-
-  // btnOpenPopup.forEach((i) =>
-  //  i.addEventListener('click', openPopupPhoto));
-  //-------------------------------------------------------------------------
-  
-   //  nameInputImg.value = '';
-  //  linkInput.value = '';
    closePopupImg();
    Listeners(elementItem);
 };
@@ -166,25 +145,24 @@ function handleFormSubmitImg (evt) {
 popupFormImg.addEventListener ('submit', handleFormSubmitImg);
 
 //--------------------3-rd popup--------------------------------
-const popupPhoto = document.querySelector('.popup-photo');
-// const btnClosePhoto = document.querySelector('.popup-photo__close');
 
-// const btnOpenPopup = document.querySelectorAll('.elements__button-img');
-// console.log(btnOpenPopup);
-
-// const popupImage = document.querySelector('.popup-photo__image');
-// const popupText = document.querySelector('.popup-photo__title');
+ const popupPhoto = document.querySelector('.popup-photo');
+ let popupImage = popupPhoto.querySelector('.popup-photo__image');
+ let popupText = popupPhoto.querySelector('.popup-photo__title');
 
 
 //-------------------------open popupImg-------------------------
-function openPopupPhoto () {
+function openPopupPhoto (event) {
+
+  console.log(event.target.alt);
+  console.log(event.target.src);
+  
+  popupImage.setAttribute('src', event.target.src);
+  popupText.textContent = event.target.alt;
+  
+
   popupPhoto.classList.add('popup-photo_opened');
  }
-
-//  btnOpenPopup.forEach((i) => 
-//  i.addEventListener('click', openPopupPhoto));
-
-
 
 //---------------------------close popupImg---------------------------------------
 function closePopupPhoto () {
@@ -195,7 +173,7 @@ function closePopupPhoto () {
 
 
 
-
+//==============================================================================================
 
 // const createElement = (item) => {
  //  const elementItem = imageTemplate.content.querySelector('.elements__item').cloneNode(true);
