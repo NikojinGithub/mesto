@@ -39,27 +39,27 @@ popupForm.addEventListener ('submit', handleFormSubmit);
 //================================================================
 
 const btnAdd = document.querySelector('.profile__add-button');
-const popupImg = document.querySelector('.popup-img');
-const btnCloseImg = document.querySelector('.popup-img__close');
+const popupImg = document.querySelector('.popup_type_add');
+const btnCloseImg = document.querySelector('.popup__close');
 const nameInputImg = document.querySelector('.popup-img__input_type_nameImg');  
 const linkInput = document.querySelector('.popup-img__input_type_link');
 const popupFormImg = document.querySelector('.popup-img__form');
 const sectionElements = document.querySelector('.elements'); //Блок в котором будут картинки
 const imageTemplate = document.querySelector('#elements__item'); // Находим темплате элемент. обращаемся к его содержимому
-const popupPhoto = document.querySelector('.popup-photo');
+const popupPhoto = document.querySelector('.popup_type_photo');
 const popupImage = popupPhoto.querySelector('.popup-photo__image');
 const popupText = popupPhoto.querySelector('.popup-photo__title');
 
 //-------------------------open popupImg-------------------------
 function openPopupImg () {
-  popupImg.classList.add('popup-img_opened');
+  popupImg.classList.add('popup_opened');
 }
 
 btnAdd.addEventListener('click', openPopupImg);
 
 //---------------------------close popupImg---------------------------------------
 function closePopupImg () {
-  popupImg.classList.remove('popup-img_opened');
+  popupImg.classList.remove('popup_opened');
   nameInputImg.value = '';
   linkInput.value = '';
 }
@@ -108,7 +108,7 @@ const addListeners = (elementItem) => {    //--Кнопки лайк, удали
   btnOpenPopup.forEach((i) => 
   i.addEventListener('click', openPopupPhoto));
 
-  const btnClosePhoto = document.querySelector('.popup-photo__close');
+  const btnClosePhoto = document.querySelector('.popup__close');
   btnClosePhoto.addEventListener('click', closePopupPhoto);
 
   return elementItem;
@@ -145,12 +145,12 @@ popupFormImg.addEventListener ('submit', handleFormSubmitImg);
 function openPopupPhoto (event) {
   popupImage.setAttribute('src', event.target.src);
   popupText.textContent = event.target.alt;
-  popupPhoto.classList.add('popup-photo_opened');
+  popupPhoto.classList.add('popup_opened');
  }
 
 //---------------------------close popupImg---------------------------------------
 function closePopupPhoto () {
-  popupPhoto.classList.remove('popup-photo_opened');
+  popupPhoto.classList.remove('popup_opened');
 }
 
 
