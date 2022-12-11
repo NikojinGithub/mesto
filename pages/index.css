@@ -14,14 +14,24 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 
 @import url(../blocks/elements/elements.css);
-@import url(../blocks/elements/__item/elements__item.css);
+
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__button-img/element__button-img.css);
+@import url(../blocks/element/__caption/element__caption.css);
+@import url(../blocks/element/__delete/element__delete.css);
+@import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/element/__photo/element__photo.css);
+@import url(../blocks/element/__text/element__text.css);
+
+/* @import url(../blocks/elements/__item/elements__item.css);
 @import url(../blocks/elements/__photo/elements__photo.css);
 @import url(../blocks/elements/__text/elements__text.css);
 @import url(../blocks/elements/__caption/elements__caption.css);
 @import url(../blocks/elements/__like/elements__like.css);
 @import url(../blocks/elements/__like/_active/elements__like_active.css);
 @import url(../blocks/elements/__delete/elements__delete.css);
-@import url(../blocks/elements/__button-img/elements__button-img.css);
+@import url(../blocks/elements/__button-img/elements__button-img.css); */
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
