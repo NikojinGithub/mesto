@@ -8,12 +8,12 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupForm = document.querySelector('.popup__form');
 
 //-------function open and close popup--------
-function openPopup (btn) {
-  btn.classList.add('popup_opened');
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
 };
 
-function closePopup (btn) {
-  btn.classList.remove('popup_opened');
+function closePopup (popup) {
+  popup.classList.remove('popup_opened');
 };
 
 //----------open and close first popup---------
@@ -50,6 +50,7 @@ const popupPhoto = document.querySelector('.popup_type_photo');
 const popupImage = popupPhoto.querySelector('.popup__image');
 const popupText = popupPhoto.querySelector('.popup__title_type_photo');
 const imageTemplate = document.querySelector('#element');
+const btnClosePhoto = document.querySelector('.popup__close_type_photo');
 
 //---------open close and reset second popup----update---------
 btnAdd.addEventListener('click', () => openPopup(popupImg));
@@ -83,19 +84,21 @@ const createElement = (item) => {
   deleteBtn.addEventListener('click', deleteImg);
 
   const btnOpenPopup = elementItem.querySelector('.element__button-img');
-  btnOpenPopup.addEventListener('click', (event) => {
-    popupImage.setAttribute('src', event.target.src);
-    popupText.textContent = event.target.alt;
+  btnOpenPopup.addEventListener('click', () => {
+    popupImage.setAttribute('src', item.link);
+    popupImage.setAttribute('alt', item.name);
+    popupText.textContent = item.name;
     openPopup(popupPhoto);
   });
-
-  const btnClosePhoto = document.querySelector('.popup__close_type_photo');
-  btnClosePhoto.addEventListener('click', () => closePopup(popupPhoto));
 
   return elementItem;
 };
 
-//========================================================================================
+//--------------------close 3-rd popup-------------------------------------------
+
+btnClosePhoto.addEventListener('click', () => closePopup(popupPhoto));
+
+//===============================================================================
 const renderElement = (item) => {                  /// addEnd
   sectionElements.append(createElement(item));
 };
@@ -104,11 +107,13 @@ const renderElementPrep = (item) => {               /// addBegin
   sectionElements.prepend(createElement(item));
 };
 
-initialCards.forEach((i) => {
-  renderElement(i);
-});
+// initialCards.forEach((i) => {
+//   renderElement(i);
+// });
 
-//===================add photo================================================
+initialCards.forEach(renderElement);
+
+//===================add photo===================================================
 
 const handleFormSubmitImg = (evt) => {
   evt.preventDefault();
@@ -124,9 +129,9 @@ const handleFormSubmitImg = (evt) => {
 
 popupFormImg.addEventListener ('submit', handleFormSubmitImg);
 
-//===================================================================================================
+//================================================================================
 
-//---------------Listeners function----------------------------------------------------
+//---------------Listeners function-----------------------------------------------
 //const addListeners = (elementItem) => {    //--Кнопки лайк, удалить элемент, открыть большую картинку, закрыть ее.
   // const like = elementItem.querySelector('.elements__like');
   // const likeElement = () => like.classList.toggle('elements__like_active');
@@ -135,7 +140,6 @@ popupFormImg.addEventListener ('submit', handleFormSubmitImg);
   // const deleteBtn = elementItem.querySelector('.elements__delete');
   // const deleteImg = () => deleteBtn.closest('.elements__item').remove();
   // deleteBtn.addEventListener('click', deleteImg);
-
 
   // const btnOpenPopup = document.querySelectorAll('.elements__button-img');
   // btnOpenPopup.forEach((i) => 
@@ -147,7 +151,6 @@ popupFormImg.addEventListener ('submit', handleFormSubmitImg);
   //return elementItem;
 //};
 
-
 //===========================Open and close and edit 3-rd popup============================================================
 // const btnOpenPopup = document.querySelectorAll('.elements__button-img');
 
@@ -157,7 +160,6 @@ popupFormImg.addEventListener ('submit', handleFormSubmitImg);
 //     popupText.textContent = event.target.alt;
 //   openPopup(popupPhoto)
 // }));
-
 
   // const btnClosePhoto = document.querySelector('.popup__close_type_photo');
   // btnClosePhoto.addEventListener('click', () =>
@@ -196,6 +198,4 @@ popupFormImg.addEventListener ('submit', handleFormSubmitImg);
 // };
 
 // popupFormImg.addEventListener ('submit', handleFormSubmitImg);
-
-
 //==============================================================================
