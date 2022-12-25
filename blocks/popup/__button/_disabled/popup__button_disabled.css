@@ -6,4 +6,9 @@
   font-weight: 400;
   line-height: 22px;
   color: black;
+  opacity: 0.2;
+}
+
+.popup__button_disabled:hover {
+  opacity: 0.2;
 }

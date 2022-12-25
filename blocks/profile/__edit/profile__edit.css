@@ -12,6 +12,7 @@
   background-position: center;
   /*align-self: center;*/
   transition: .3s ease;
+  outline: none;
 }
 
 .profile__edit:hover {

@@ -1,11 +1,60 @@
 const btnEdit = document.querySelector('.profile__edit');
 const btnClose = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
+
 const nameInput = document.querySelector('.popup__input_type_name');  
 const jobInput = document.querySelector('.popup__input_type_job');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupForm = document.querySelector('.popup__form');
+const popupList = document.querySelectorAll('.popup');
+
+
+//----Fix---------- activate and deactivate popup button----------
+// const button = document.querySelectorAll('.popup__button');
+
+// const activate = () => {
+//   button[0].classList.remove('popup__button_disabled');
+//   button[0].disabled = false;
+// }
+
+// const deactivate = () => {
+//   button[1].classList.add('popup__button_disabled');
+//   button[1].disabled = true;
+// }
+
+//--------------------clear error span------------------------------
+const error = Array.from(document.querySelectorAll('.popup__error'));
+
+//console.log(error);
+function clear() {
+error.forEach(() => error.textContent.reset());
+};
+
+//error.textContent = '';
+
+// --------------close with click overlay-------- get all elements popup on page and forEach and add listener for each-----
+
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if(evt.target === popup) {
+      closePopup(popup);
+      resetPopup();
+    }
+  });
+});  
+// --------------close with esc--------------------------
+
+popupList.forEach((popup) => {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { 
+      closePopup (popup);
+      resetPopup();  
+    };
+  });
+});
+
+
 
 //-------function open and close popup--------
 function openPopup (popup) {
@@ -21,6 +70,7 @@ btnEdit.addEventListener('click', () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
   openPopup(popup)
+  //activate();
 });
 
 btnClose.addEventListener('click', () => closePopup(popup));
@@ -34,6 +84,8 @@ function handleFormSubmit (evt) {
 }
 
 popupForm.addEventListener ('submit', handleFormSubmit);
+
+
 
 //================================================================
 //----------------5 sprint---------------------------------------
@@ -53,7 +105,10 @@ const imageTemplate = document.querySelector('#element');
 const btnClosePhoto = document.querySelector('.popup__close_type_photo');
 
 //---------open close and reset second popup----update---------
-btnAdd.addEventListener('click', () => openPopup(popupImg));
+btnAdd.addEventListener('click', () => {
+  openPopup(popupImg)
+  //deactivate();
+});
 
 btnCloseImg.addEventListener('click', () => {
   resetPopup();

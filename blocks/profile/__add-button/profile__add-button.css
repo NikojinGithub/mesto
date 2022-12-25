@@ -12,6 +12,7 @@
   background-position: center;
   background-size: auto;
   transition: .3s ease;
+  outline: none;
 }
 
 .profile__add-button:hover {
