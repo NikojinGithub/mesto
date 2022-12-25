@@ -60,19 +60,11 @@ function setHandlers(formElement, config) {
     validateInput(formElement, inputElement, config);
     toggleButton(inputList, button, config);
   });
-
+  
   hideInputError(formElement, inputElement, config); 
 });
-
 };
 
-
-//const button = formElement.querySelectorAll(config.submitButtonSelector);
-//-----------button disabled off---------------------------
-  //const button = document.querySelector('.popup__button');
-// console.log(button);
-// button.disabled = false;
-//---------------------button----------------------------------
 
 const checkInput = (inputList) => {
   return inputList.some((inputElement) => {
@@ -84,11 +76,29 @@ const checkInput = (inputList) => {
 //--------Get all forms and use handlers function for each???------------------------
 function enableValidation(config) {
   const form = document.querySelectorAll(config.formElement);
-   
-   form.forEach((formElement) => {
+
+  form.forEach((formElement) => {
   setHandlers(formElement, config);
 });
 
 }
 
 enableValidation(validationConfig);
+
+//--------------------------------------------------------------------------------------------------------------
+
+// function setButtonState(popup, config) {
+//  const form = popup.querySelector(config.formElement);
+//  const inputList = Array.from(form.querySelectorAll(config.inputElement));
+//  const button = form.querySelector(config.submitButtonSelector);
+
+//   toggleButton(inputList, button, config);
+ 
+//   }; 
+
+
+// inputList.forEach((inputElement) => {
+//   inputElement.addEventListener('input', () => {
+//    validateInput(formElement, inputElement, config);
+//   toggleButton(inputList, button, config);
+//  });
