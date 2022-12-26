@@ -1,7 +1,6 @@
 const btnEdit = document.querySelector('.profile__edit');
 const btnClose = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
-
 const nameInput = document.querySelector('.popup__input_type_name');  
 const jobInput = document.querySelector('.popup__input_type_job');
 const profileTitle = document.querySelector('.profile__title');
@@ -18,25 +17,32 @@ popupList.forEach((popup) => {
     }
   });
 });  
-// --------------close with esc--------------------------
 
-popupList.forEach((popup) => {
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { 
-      closePopup (popup);  
-    };
-  });
-});
+// --------------close with esc---------------------------------
+// popupList.forEach((popup) => {
+//   document.addEventListener('keydown', (e) => {
+//     if (e.key === 'Escape') { 
+//       closePopup (popup);  
+//     };
+//   });
+// });
 
-
+//-------------------function closeEsc----------------------------
+const closeEsc = (e) => {
+  if (e.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  };
+};
 
 //-------function open and close popup--------
-function openPopup (popup) {
+function openPopup (popup) { 
   popup.classList.add('popup_opened');
-  //setButtonState(popup);
+  document.addEventListener('keydown', closeEsc);
 };
 
 function closePopup (popup) {
+  document.removeEventListener('keydown', closeEsc);
   popup.classList.remove('popup_opened');
 };
 
@@ -45,7 +51,7 @@ btnEdit.addEventListener('click', () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
   openPopup(popup)
-  setButtonState(popup);           //Проверка инпутов на валидность и выключение/включение кнопки.
+  setButtonState(popup);//Проверка инпутов на валидность и выключение/включение кнопки.          
 });
 
 btnClose.addEventListener('click', () => closePopup(popup));
@@ -82,9 +88,9 @@ const btnClosePhoto = document.querySelector('.popup__close_type_photo');
 //---------open close and reset second popup----update---------
 btnAdd.addEventListener('click', () => {
   openPopup(popupImg)
-  //Проверка инпутов на валидность и выключение/включение кнопки.
-  setButtonState(popupImg);  
-  resetPopup();               
+
+  resetPopup();                   //Сброс инпутов с последующей их проверкой
+  setButtonState(popupImg);      //Проверка инпутов на валидность и выключение/включение кнопки.    
 });
 
 btnCloseImg.addEventListener('click', () => {
@@ -154,7 +160,6 @@ const handleFormSubmitImg = (evt) => {
   };
   
   renderElementPrep(element);
-  resetPopup();
   closePopup(popupImg); 
 };
 
