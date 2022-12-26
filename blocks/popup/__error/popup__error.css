@@ -8,3 +8,9 @@
   line-height: 15px;
   margin-top: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .popup__error {
+    margin-left: 22px;
+  }
+}

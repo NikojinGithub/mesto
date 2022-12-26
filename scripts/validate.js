@@ -7,11 +7,23 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 }; 
 
+//------------------setButtonBeforeCheckInputs----------------------------------------------
+
 function setButtonState(popup) {
   const formElement = popup.querySelector(validationConfig.formElement);
   const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputElement));
   const button = formElement.querySelector(validationConfig.submitButtonSelector);
   toggleButton(inputList, button, validationConfig); 
+};
+
+//----------------clearErrors-----------------------------------------------
+
+function clearInputError(popup) {
+  const formElement = popup.querySelector(validationConfig.formElement);
+  const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputElement));
+  inputList.forEach((inputElement) => {
+  hideInputError(formElement, inputElement, validationConfig);
+  });
 };
 
 // ------------ Add error class---------------

@@ -8,7 +8,7 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupForm = document.querySelector('.popup__form');
 const popupList = document.querySelectorAll('.popup');
 
-// --------------close with click overlay-------- get all elements popup on page and forEach and add listener for each-----
+// -----close with click overlay--- get all elements popup on page and forEach and add listener for each-----
 
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -51,7 +51,8 @@ btnEdit.addEventListener('click', () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
   openPopup(popup)
-  setButtonState(popup);//Проверка инпутов на валидность и выключение/включение кнопки.          
+  setButtonState(popup);//Проверка инпутов на валидность и выключение/включение кнопки.  
+  clearInputError(popup);        
 });
 
 btnClose.addEventListener('click', () => closePopup(popup));
@@ -65,8 +66,6 @@ function handleFormSubmit (evt) {
 }
 
 popupForm.addEventListener ('submit', handleFormSubmit);
-
-
 
 //================================================================
 //----------------5 sprint---------------------------------------
@@ -90,7 +89,8 @@ btnAdd.addEventListener('click', () => {
   openPopup(popupImg)
 
   resetPopup();                   //Сброс инпутов с последующей их проверкой
-  setButtonState(popupImg);      //Проверка инпутов на валидность и выключение/включение кнопки.    
+  setButtonState(popupImg);      //Проверка инпутов на валидность и выключение/включение кнопки.  
+  clearInputError(popupImg);   
 });
 
 btnCloseImg.addEventListener('click', () => {
@@ -127,7 +127,6 @@ const createElement = (item) => {
     popupText.textContent = item.name;
     openPopup(popupPhoto);
   });
-
   return elementItem;
 };
 
