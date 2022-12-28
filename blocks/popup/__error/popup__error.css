@@ -1,5 +1,6 @@
 .popup__error {
   display: block;
+  visibility: hidden;
   min-height: 30px;
   color: red;
   margin-left: 36px;
