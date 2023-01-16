@@ -1,13 +1,27 @@
+import FormValidator from "./formValidator.js";
+//import Card from "./card.js";
+
+const validationConfig = {
+  formElement: '.popup__form',
+  inputElement: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}; 
+
 const btnEdit = document.querySelector('.profile__edit');
 const btnClose = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
-const nameInput = document.querySelector('.popup__input_type_name');  
+const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupForm = document.querySelector('.popup__form');
 const popupList = document.querySelectorAll('.popup');
+const popupImg = document.querySelector('.popup_type_add');
 
+console.log(popup);
 // -----close with click overlay--- get all elements popup on page and forEach and add listener for each-----
 
 popupList.forEach((popup) => {
@@ -17,6 +31,14 @@ popupList.forEach((popup) => {
     }
   });
 });  
+
+const editValidation = new FormValidator(validationConfig, popup);
+console.log(editValidation);
+editValidation.enableValidation();
+
+const addValidation = new FormValidator(validationConfig, popupImg);
+console.log(addValidation);
+addValidation.enableValidation();
 
 // --------------close with esc---------------------------------
 // popupList.forEach((popup) => {
@@ -51,8 +73,8 @@ btnEdit.addEventListener('click', () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
   openPopup(popup)
-  setButtonState(popup);//Проверка инпутов на валидность и выключение/включение кнопки.  
-  clearInputError(popup);        
+  //setButtonState(popup);//Проверка инпутов на валидность и выключение/включение кнопки.  
+  //clearInputError(popup);        
 });
 
 btnClose.addEventListener('click', () => closePopup(popup));
@@ -72,25 +94,27 @@ popupForm.addEventListener ('submit', handleFormSubmit);
 //================================================================
 
 const btnAdd = document.querySelector('.profile__add-button');
-const popupImg = document.querySelector('.popup_type_add');
+
 const btnCloseImg = document.querySelector('.popup__close_type_add');
-const sectionElements = document.querySelector('.elements'); //Блок в котором будут картинки
+//const sectionElements = document.querySelector('.elements'); //Блок в котором будут картинки
 const nameInputImg = document.querySelector('.popup__input_type_nameImg');  
 const linkInput = document.querySelector('.popup__input_type_link');
 const popupFormImg = document.querySelector('.popup__form_type_add');
-const popupPhoto = document.querySelector('.popup_type_photo');
-const popupImage = popupPhoto.querySelector('.popup__image');
-const popupText = popupPhoto.querySelector('.popup__title_type_photo');
-const imageTemplate = document.querySelector('#element');
+// const popupPhoto = document.querySelector('.popup_type_photo');
+// const popupImage = popupPhoto.querySelector('.popup__image');   //++++
+// const popupText = popupPhoto.querySelector('.popup__title_type_photo');
+//const imageTemplate = document.querySelector('#element');
 const btnClosePhoto = document.querySelector('.popup__close_type_photo');
+const btnOpenPopup = document.querySelector('.element__button-img');
+
 
 //---------open close and reset second popup----update---------
 btnAdd.addEventListener('click', () => {
   openPopup(popupImg)
 
   resetPopup();                   //Сброс инпутов с последующей их проверкой
-  setButtonState(popupImg);      //Проверка инпутов на валидность и выключение/включение кнопки.  
-  clearInputError(popupImg);   
+  //setButtonState(popupImg);      //Проверка инпутов на валидность и выключение/включение кнопки.  
+  //clearInputError(popupImg);   
 });
 
 btnCloseImg.addEventListener('click', () => {
@@ -102,54 +126,15 @@ const resetPopup = () => {
   linkInput.value = '';
 };
 
-//============================add card like delete viewPopup==========================================
 
-const createElement = (item) => {
-  const elementItem = imageTemplate.content.querySelector('.element').cloneNode(true);
-  const itemText = elementItem.querySelector('.element__text');
-  const itemPhoto = elementItem.querySelector('.element__photo');
-  itemText.textContent  = item.name;
-  itemPhoto.src = item.link;
-  itemPhoto.alt  = item.name;
+//-------close popup Photo---------------------------
+btnClosePhoto.addEventListener('click', () => {
+  closePopup(popupPhoto);;
+});
 
-  const like = elementItem.querySelector('.element__like');
-  const likeElement = () => like.classList.toggle('element__like_active');
-  like.addEventListener('click', likeElement);  
-   
-  const deleteBtn = elementItem.querySelector('.element__delete');
-  const deleteImg = () => deleteBtn.closest('.element').remove();
-  deleteBtn.addEventListener('click', deleteImg);
 
-  const btnOpenPopup = elementItem.querySelector('.element__button-img');
-  btnOpenPopup.addEventListener('click', () => {
-    popupImage.setAttribute('src', item.link);
-    popupImage.setAttribute('alt', item.name);
-    popupText.textContent = item.name;
-    openPopup(popupPhoto);
-  });
-  return elementItem;
-};
 
-//--------------------close 3-rd popup-------------------------------------------
-
-btnClosePhoto.addEventListener('click', () => closePopup(popupPhoto));
-
-//===============================================================================
-const renderElement = (item) => {                  /// addEnd
-  sectionElements.append(createElement(item));
-};
-
-const renderElementPrep = (item) => {               /// addBegin
-  sectionElements.prepend(createElement(item));
-};
-
-// initialCards.forEach((i) => {
-//   renderElement(i);
-// });
-
-initialCards.forEach(renderElement);
-
-//===================add photo===================================================
+//===================add new card===================================================
 
 const handleFormSubmitImg = (evt) => {
   evt.preventDefault();
@@ -163,6 +148,24 @@ const handleFormSubmitImg = (evt) => {
 };
 
 popupFormImg.addEventListener ('submit', handleFormSubmitImg);
+
+const renderElementPrep = (item) => { 
+  
+  const card = new Card (item.name, item.link);
+  const cardElement = card.generateCard();
+  sectionElements.prepend(cardElement);                            // Передать вместо createElement класс Card.
+};
+
+//Возможно проблема в импорте файло. Сделать импорт экспорт.
+
+//----------function open popupPhoto to card.js _setClickHandler
+function openImage() {
+  openPopup(popupPhoto);
+}
+
+// function closeImage() {
+//   closePopup(popupPhoto);
+// }
 
 //================================================================================
 
@@ -259,3 +262,52 @@ popupFormImg.addEventListener ('submit', handleFormSubmitImg);
 // };
 
 //error.textContent = '';
+
+
+// create card without oop
+//============================add card like delete viewPopup==========================================
+
+// const createElement = (item) => {
+//   const elementItem = imageTemplate.content.querySelector('.element').cloneNode(true);
+//   +const itemText = elementItem.querySelector('.element__text');
+//   +const itemPhoto = elementItem.querySelector('.element__photo');
+//   +itemText.textContent  = item.name;
+//   +itemPhoto.src = item.link;
+//   +itemPhoto.alt  = item.name;
+
+//   +const like = elementItem.querySelector('.element__like');
+//   +const likeElement = () => like.classList.toggle('element__like_active');
+//   +like.addEventListener('click', likeElement);  
+   
+//   +const deleteBtn = elementItem.querySelector('.element__delete');
+//   +const deleteImg = () => deleteBtn.closest('.element').remove();
+//   +deleteBtn.addEventListener('click', deleteImg);
+
+//  const btnOpenPopup = document.querySelector('.element__button-img');
+//   btnOpenPopup.addEventListener('click', () => {
+//   popupImage.setAttribute('src', item.link);
+//   popupImage.setAttribute('alt', item.name);
+//   popupText.textContent = item.name;
+//   openPopup(popupPhoto);
+//  });
+//  + return elementItem;
+// };
+
+
+//--------------------close 3-rd popup-------------------------------------------
+
+// btnClosePhoto.addEventListener('click', () => closePopup(popupPhoto));
+
+//===============================================================================
+
+// const renderElement = (item) => {                  /// addEnd
+//   sectionElements.append(createElement(item));
+// };
+
+
+
+// // initialCards.forEach((i) => {
+// //   renderElement(i);
+// // });
+
+// initialCards.forEach(renderElement);
