@@ -10,7 +10,6 @@ export default class FormValidator {
     this._inputError = config.inputErrorClass;
     this._error = config.errorClass;
     
-
     //Find input list in element.
     //Find button in element.
     this._formElement = formElement;
