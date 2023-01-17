@@ -1,12 +1,7 @@
-//import { initialCards } from "./cards";
+import { initialCards } from "./cards.js";
+import { openImage } from "./index.js";
 
-
-const popupPhoto = document.querySelector('.popup_type_photo');
-const popupImage = popupPhoto.querySelector('.popup__image');
-const popupText = popupPhoto.querySelector('.popup__title_type_photo');
-const sectionElements = document.querySelector('.elements');
-
-class Card {
+export default class Card {
   constructor(name, link) {
     this._name = name;
     this._link = link;
@@ -21,7 +16,8 @@ class Card {
 
     return elementItem;
   }
-
+  
+  // Function Add image and text to element and return it.
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
@@ -34,6 +30,7 @@ class Card {
     return this._element;
   }
   
+  // Function add listeners
   _setEventListeners() {
     this._element.querySelector('.element__like').addEventListener('click', () => {
      this._likeElement();
@@ -43,42 +40,46 @@ class Card {
     })
     this._element.querySelector('.element__button-img').addEventListener('click', () => {
       this._openImage();
-      this._setClickHandler(openImage);
     })
  }
 
+  // Function like toggle.
   _likeElement() {
     this._element.querySelector('.element__like').classList.toggle('element__like_active');
   }
 
+  // Function delete element.
   _deleteElement() {
     this._element.remove();
   }
-
+  
+  // Function open popup with image.
   _openImage() {
-    popupImage.setAttribute('src', this._link);
-    popupImage.setAttribute('alt', this._name);
-    popupText.textContent = this._name;
+    document.querySelector('.popup__image').setAttribute('src', this._link);
+    document.querySelector('.popup__image').setAttribute('alt', this._name);
+    document.querySelector('.popup__title_type_photo').textContent = this._name;
+    this._setClickHandler(openImage);
   }
-
+   // Function get another function from index.js and return it.
   _setClickHandler = (func) => {
     func();
   };
-
 }
 
+ // Create new card from initialCards array.
 initialCards.forEach((item) => {
   const card = new Card (item.name, item.link);
   const cardElement = card.generateCard();
-  sectionElements.append(cardElement);
+  document.querySelector('.elements').append(cardElement);
 })
-
-//export default Card;
  
 
-
-
 //===========================================================================
+
+// const popupPhoto = document.querySelector('.popup_type_photo');
+// const popupImage = popupPhoto.querySelector('.popup__image');
+// const popupText = popupPhoto.querySelector('.popup__title_type_photo');
+// const sectionElements = document.querySelector('.elements');
 
 // const handleFormSubmitImg = (evt) => {
 //   evt.preventDefault();
