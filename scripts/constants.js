@@ -1,3 +1,12 @@
+export const validationConfig = {
+  formElement: '.popup__form',
+  inputElement: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}; 
+
 export const initialCards = [
   {
     name: 'Эверест',
@@ -7,7 +16,7 @@ export const initialCards = [
   {
     name: 'Ачипсинские водопады',
     
-    link: '../images/Ачипсинские.jpg'
+    link: 'https://images.unsplash.com/photo-1674112898878-84888cdcec6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60'
   },
   {
     name: 'Гора Чогори',
@@ -17,7 +26,7 @@ export const initialCards = [
   {
     name: 'Бзерпинский карниз',
     
-    link: '../images/Бзерпинский.jpg'
+    link: 'https://images.unsplash.com/photo-1674112906210-0d14632f08e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60'
   },
   {
     name: 'Гора Эльбрус',

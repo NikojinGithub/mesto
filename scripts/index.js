@@ -1,14 +1,6 @@
-import FormValidator from "./formValidator.js";
-import Card from "./card.js";
-
-const validationConfig = {
-  formElement: '.popup__form',
-  inputElement: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}; 
+import { FormValidator } from "./formValidator.js";
+import { Card } from "./card.js";
+import { initialCards, validationConfig } from "./constants.js";
 
 const btnEdit = document.querySelector('.profile__edit');
 const btnClose = document.querySelector('.popup__close');
@@ -36,7 +28,17 @@ const popupPhoto = document.querySelector('.popup_type_photo');
 
 const btnClosePhoto = document.querySelector('.popup__close_type_photo');
 
-//---------Create validation class for popup------------------------
+//const imageTemplate = document.querySelector('#element');
+
+
+ //---------Create new card from initialCards array.---------------------
+ initialCards.forEach((item) => {
+  const card = new Card (item.name, item.link, '#element');
+  const cardElement = card.generateCard();
+  document.querySelector('.elements').append(cardElement);
+})
+
+//---------Create validation class for popup-----------------------------
 
 const editValidation = new FormValidator(validationConfig, popup);
 //console.log(editValidation);
@@ -56,7 +58,7 @@ popupList.forEach((popup) => {
   });
 });
 
-//-------------------function closeEsc------------------------------
+//-------------------function closeEsc-----------------------------------
 
 const closeEsc = (e) => {
   if (e.key === 'Escape') {
@@ -84,7 +86,7 @@ btnEdit.addEventListener('click', () => {
   jobInput.value = profileSubtitle.textContent;
   openPopup(popup)
       
-  editValidation.resetError();           //Очистка ошибок, после открытия попапа. 
+  editValidation.resetErrors();           //Очистка ошибок, после открытия попапа. 
   editValidation.setButton();            // Валидация кнопки при открытии попапа.
 });
 
@@ -104,11 +106,13 @@ popupForm.addEventListener ('submit', handleFormSubmit);
 //---------open close and reset second popup----update---------
 
 btnAdd.addEventListener('click', () => {
+  
+  
   openPopup(popupImg)
 
   resetPopup();                   //Сброс инпутов с последующей их проверкой
 
-  addValidation.resetError();     //Очистка ошибок, после открытия попапа.
+  addValidation.resetErrors();     //Очистка ошибок, после открытия попапа.
   addValidation.setButton();      //Валидация кнопки при открытии попапа.
 });
 
@@ -143,8 +147,8 @@ const handleFormSubmitImg = (evt) => {
 popupFormImg.addEventListener ('submit', handleFormSubmitImg);
 
 const renderElementPrep = (item) => { 
-  const card = new Card (item.name, item.link);
-  const cardElement = card.generateCard();               // Передать вместо createElement класс Card.
+  const card = new Card (item.name, item.link, '#element');
+  const cardElement = card.generateCard();                    // Передать вместо createElement класс Card.
   sectionElements.prepend(cardElement);                            
 };
 

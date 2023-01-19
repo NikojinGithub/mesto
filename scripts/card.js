@@ -1,15 +1,16 @@
-import { initialCards } from "./cards.js";
 import { openImage } from "./index.js";
 
-export default class Card {
-  constructor(name, link) {
+export class Card {
+  constructor(name, link, templateSelector) {
     this._name = name;
     this._link = link;
+    this._templateSelector = templateSelector;
   }
+  
 
   _getTemplate() {
     const elementItem = document
-    .querySelector('#element')
+    .querySelector(this._templateSelector)
     .content
     .querySelector('.element')
     .cloneNode(true);
@@ -20,11 +21,19 @@ export default class Card {
   // Function Add image and text to element and return it.
   generateCard() {
     this._element = this._getTemplate();
+
+    // Find elements in card.
+    this._cardPhoto = this._element.querySelector('.element__photo');
+    this._cardText = this._element.querySelector('.element__text');
+    this._likeButton = this._element.querySelector('.element__like');
+    this._deleteButton = this._element.querySelector('.element__delete');
+    this._openImageButton = this._element.querySelector('.element__button-img');
+
     this._setEventListeners();
     
-    this._element.querySelector('.element__photo').src = this._link;
-    this._element.querySelector('.element__photo').alt = this._name;
-    this._element.querySelector('.element__text').textContent = this._name;
+    this._cardPhoto.src = this._link;
+    this._cardPhoto.alt = this._name;
+    this._cardText.textContent = this._name;
     
     //console.log(this._element);
     return this._element;
@@ -32,20 +41,21 @@ export default class Card {
   
   // Function add listeners
   _setEventListeners() {
-    this._element.querySelector('.element__like').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
      this._likeElement();
     })
-    this._element.querySelector('.element__delete').addEventListener('click', () => {
+    this._deleteButton.addEventListener('click', () => {
       this._deleteElement();
     })
-    this._element.querySelector('.element__button-img').addEventListener('click', () => {
+    this._openImageButton.addEventListener('click', () => {
       this._openImage();
+      //this._setClickHandler(openImage);
     })
  }
 
   // Function like toggle.
   _likeElement() {
-    this._element.querySelector('.element__like').classList.toggle('element__like_active');
+    this._likeButton.classList.toggle('element__like_active');
   }
 
   // Function delete element.
@@ -66,12 +76,7 @@ export default class Card {
   };
 }
 
- // Create new card from initialCards array.
-initialCards.forEach((item) => {
-  const card = new Card (item.name, item.link);
-  const cardElement = card.generateCard();
-  document.querySelector('.elements').append(cardElement);
-})
+
  
 
 //===========================================================================

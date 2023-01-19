@@ -1,4 +1,4 @@
-export default class FormValidator {
+export class FormValidator {
   // Transfer in constructor formElement wich we need.
   // Transfer in constructor object with config.
   constructor(config, formElement) { 
@@ -34,16 +34,15 @@ export default class FormValidator {
   }
 
   //Function check validity inputs.
-  _checkInput = () => {
+  _hasInvalidInputs = () => {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   };
 
-
   //Function add or remove text error after validity inputs.
-  _validationInput(inputElement) {
-    if (this._checkInput(inputElement)) {
+  _validateInput(inputElement) {
+    if (this._hasInvalidInputs(inputElement)) {
       this._showInputError(inputElement);
     } else {
       this._hideInputError(inputElement);
@@ -51,8 +50,8 @@ export default class FormValidator {
   }
 
   //Function activate/deactivate button after validity inputs.
-  _toggleButton = (inputElement) => { 
-    if (this._checkInput(inputElement)) {
+  _toggleButton() { 
+    if (this._hasInvalidInputs()) {
       this._button.classList.add(this._inactiveButton);
       this._button.disabled = true;
     } else {
@@ -65,7 +64,7 @@ export default class FormValidator {
   _setHandlers() {
     this._inputList.forEach((input) => {
       input.addEventListener('input', () => {
-        this._validationInput(input);
+        this._validateInput(input);
         this._toggleButton(input);
       })
     })
@@ -76,7 +75,7 @@ export default class FormValidator {
     
   }
    // Public function wich reset text errors when popup opens.
-  resetError() {
+  resetErrors() {
     this._inputList.forEach((input) => {
       this._hideInputError(input);
     })
