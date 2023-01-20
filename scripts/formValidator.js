@@ -50,7 +50,7 @@ export class FormValidator {
   }
 
   //Function activate/deactivate button after validity inputs.
-  _toggleButton() { 
+  toggleButton() { 
     if (this._hasInvalidInputs()) {
       this._button.classList.add(this._inactiveButton);
       this._button.disabled = true;
@@ -65,23 +65,19 @@ export class FormValidator {
     this._inputList.forEach((input) => {
       input.addEventListener('input', () => {
         this._validateInput(input);
-        this._toggleButton(input);
+        this.toggleButton();
       })
     })
   }
    // Public function wich activate enable validation to form. Calls in index.js.
   enableValidation() {
-    this._setHandlers();
-    
+    this._setHandlers();  
   }
+  
    // Public function wich reset text errors when popup opens.
   resetErrors() {
     this._inputList.forEach((input) => {
       this._hideInputError(input);
     })
-  }
-  // Public function wich activate/deactivate button when popup opens.
-  setButton() {
-    this._toggleButton();
   }
 }

@@ -1,13 +1,17 @@
-import { openImage } from "./index.js";
-
 export class Card {
-  constructor(name, link, templateSelector) {
+
+  //name = title Cards; 
+  //link = link to card image; 
+  //templateSelector = template id; 
+  //openImage = function for openPopupPhoto from index.js
+
+  constructor(name, link, templateSelector, openPopupImage) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
+    this._openPopupImage = openPopupImage;
   }
   
-
   _getTemplate() {
     const elementItem = document
     .querySelector(this._templateSelector)
@@ -48,8 +52,7 @@ export class Card {
       this._deleteElement();
     })
     this._openImageButton.addEventListener('click', () => {
-      this._openImage();
-      //this._setClickHandler(openImage);
+      this._openPopupImage(this._name, this._link);
     })
  }
 
@@ -62,69 +65,4 @@ export class Card {
   _deleteElement() {
     this._element.remove();
   }
-  
-  // Function open popup with image.
-  _openImage() {
-    document.querySelector('.popup__image').setAttribute('src', this._link);
-    document.querySelector('.popup__image').setAttribute('alt', this._name);
-    document.querySelector('.popup__title_type_photo').textContent = this._name;
-    this._setClickHandler(openImage);
-  }
-   // Function get another function from index.js and return it.
-  _setClickHandler = (func) => {
-    func();
-  };
 }
-
-
- 
-
-//===========================================================================
-
-// const popupPhoto = document.querySelector('.popup_type_photo');
-// const popupImage = popupPhoto.querySelector('.popup__image');
-// const popupText = popupPhoto.querySelector('.popup__title_type_photo');
-// const sectionElements = document.querySelector('.elements');
-
-// const handleFormSubmitImg = (evt) => {
-//   evt.preventDefault();
-//   const element = {
-//     name: nameInputImg.value,
-//     link: linkInput.value
-//   };
-  
-//   renderElementPrep(element);
-//   closePopup(popupImg); 
-// };
-
-// const renderElementPrep = (item) => {               /// addBegin
-//   sectionElements.prepend(item);
-// };
-
-// popupFormImg.addEventListener ('submit', handleFormSubmitImg);
-
-// class DefaultCard extends Card {
-//   constructor(data, templateSelector){
-//     super(templateSelector);
-//     this._name = data.name;
-//     this._link = data.link;
-//   }
-
-//   generateCard() {
-//     this._element = super._getTemplate();
-//     super._setEventListeners();
-
-//     this._element.querySelector('.element__photo').src = this._link;
-//     this._element.querySelector('.element__photo').alt = this._name;
-//     this._element.querySelector('.element__text').textContent = this._name;
-    
-//     return this._element;
-//   }
-// }
-
-// initialCards.forEach((item) => {
-//   const card = new Card (item.name, item.link);
-//   const cardElement = card.generateCard();
-
-//   sectionElements.append(cardElement);
-// })
