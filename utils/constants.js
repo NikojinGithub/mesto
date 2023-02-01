@@ -39,3 +39,25 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
 ];
+
+export const popupEdit = document.querySelector('.popup_type_edit');
+export const btnCloseEdit = popupEdit.querySelector('.popup__close');
+export const popupFormEdit = popupEdit.querySelector('.popup__form');
+export const btnEdit = document.querySelector('.profile__edit');
+export const nameInput = document.querySelector('.popup__input_type_name');
+export const jobInput = document.querySelector('.popup__input_type_job');
+export const profileTitle = document.querySelector('.profile__title');
+export const profileSubtitle = document.querySelector('.profile__subtitle');
+export const popupList = document.querySelectorAll('.popup');
+export const popupImg = document.querySelector('.popup_type_add');
+
+export const btnAdd = document.querySelector('.profile__add-button');
+export const btnCloseImg = document.querySelector('.popup__close_type_add');
+export const sectionElements = document.querySelector('.elements');                //Блок в котором будут картинки
+export const nameInputImg = document.querySelector('.popup__input_type_nameImg');  
+export const linkInput = document.querySelector('.popup__input_type_link');
+export const popupFormImg = document.querySelector('.popup__form_type_add');
+export const popupPhoto = document.querySelector('.popup_type_photo');
+export const popupPhotoImage = document.querySelector('.popup__image');
+export const popupPhotoText = document.querySelector('.popup__title_type_photo');
+export const btnClosePhoto = document.querySelector('.popup__close_type_photo');

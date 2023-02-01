@@ -1,30 +1,33 @@
-import { FormValidator } from "./formValidator.js";
-import { Card } from "./card.js";
-import { initialCards, validationConfig } from "./constants.js";
+import { FormValidator } from "../components/formValidator.js";
+import { Card } from "../components/card.js";
+import { Section } from '../components/section.js';
+import { Popup } from '../components/Popup.js';
+import { initialCards, validationConfig, popupEdit, btnCloseEdit, popupFormEdit, btnEdit, nameInput, jobInput, 
+profileTitle, profileSubtitle, popupList, popupImg, btnAdd, btnCloseImg, sectionElements, nameInputImg,
+linkInput, popupFormImg, popupPhoto, popupPhotoImage, popupPhotoText, btnClosePhoto } from "../utils/constants.js";
 
-const popupEdit = document.querySelector('.popup_type_edit');
-const btnCloseEdit = popupEdit.querySelector('.popup__close');
-const popupFormEdit = popupEdit.querySelector('.popup__form');
-const btnEdit = document.querySelector('.profile__edit');
-const nameInput = document.querySelector('.popup__input_type_name');
-const jobInput = document.querySelector('.popup__input_type_job');
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
-const popupList = document.querySelectorAll('.popup');
-const popupImg = document.querySelector('.popup_type_add');
+const popup = document.querySelector('.popup');
 
-//----------------5 sprint const---------------------------------------
+const popupClass = new Popup(popup);
 
-const btnAdd = document.querySelector('.profile__add-button');
-const btnCloseImg = document.querySelector('.popup__close_type_add');
-const sectionElements = document.querySelector('.elements');                //Блок в котором будут картинки
-const nameInputImg = document.querySelector('.popup__input_type_nameImg');  
-const linkInput = document.querySelector('.popup__input_type_link');
-const popupFormImg = document.querySelector('.popup__form_type_add');
-const popupPhoto = document.querySelector('.popup_type_photo');
-const popupPhotoImage = document.querySelector('.popup__image');
-const popupPhotoText = document.querySelector('.popup__title_type_photo');
-const btnClosePhoto = document.querySelector('.popup__close_type_photo');
+
+//===================== Создание карточек. Класс Section.==============================================
+
+const cardListSection = document.querySelector('.elements');
+
+const defaultCardsList = new Section({ 
+  data: initialCards,
+  renderer: (item) => {
+    const card = new Card (item.name, item.link, '#element', openPopupImage);
+    const element = card.generateCard();
+    defaultCardsList.addItem(element);
+  }
+},
+  cardListSection
+)
+
+defaultCardsList.renderCards();
+//=============================================================================================================
 //const imageTemplate = document.querySelector('#element');
 
 //----------function add image, text and open large image popup------------ 
@@ -36,14 +39,6 @@ function openPopupImage(name, link) {
   popupPhotoText.textContent = name;
   openPopup(popupPhoto);
 }
-
-//---------Create new card from initialCards array.---------------------
- 
-initialCards.forEach((item) => {
-  const card = new Card (item.name, item.link, '#element', openPopupImage);
-  const cardElement = card.generateCard();
-  document.querySelector('.elements').append(cardElement);
-})
 
 //-------------------------add new card------------------------------
 
@@ -153,3 +148,13 @@ btnCloseImg.addEventListener('click', () => {
 btnClosePhoto.addEventListener('click', () => {
   closePopup(popupPhoto);;
 });
+
+//=====================================================================================================
+
+//---------Create new card from initialCards array.---------------------
+ 
+// initialCards.forEach((item) => {
+//   const card = new Card (item.name, item.link, '#element', openPopupImage);
+//   const cardElement = card.generateCard();
+//   cardListSection.append(cardElement);
+// })
