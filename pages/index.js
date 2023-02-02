@@ -6,12 +6,12 @@ import { initialCards, validationConfig, popupEdit, btnCloseEdit, popupFormEdit,
 profileTitle, profileSubtitle, popupList, popupImg, btnAdd, btnCloseImg, sectionElements, nameInputImg,
 linkInput, popupFormImg, popupPhoto, popupPhotoImage, popupPhotoText, btnClosePhoto } from "../utils/constants.js";
 
-const popup = document.querySelector('.popup');
+// const popup = document.querySelector('.popup');
 
-const popupClass = new Popup(popup);
+const openAndCloseEditPopup = new Popup('.popup_type_edit');
 
 
-//===================== Создание карточек. Класс Section.==============================================
+//=====Переделать==== Создание карточек. Класс Section.=====Класс сектион не создает карточку, он только вставляет ее в разметку.=====
 
 const cardListSection = document.querySelector('.elements');
 
@@ -74,44 +74,47 @@ addValidation.enableValidation();
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if(evt.target === popup) {
-      closePopup(popup);
+      //closePopup(popup)!!!!;
     }
   });
 });
 
 //-------------------function closeEsc-----------------------------------
 
-const closeByEsc = (e) => {
-  if (e.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
-  };
-};
+// const closeByEsc = (e) => {
+//   if (e.key === 'Escape') {
+//     const popup = document.querySelector('.popup_opened');
+//     closePopup(popup);
+//   };
+// };
 
 //-------function open and close popup--------
 
-function openPopup (popup) { 
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
-};
+// function openPopup (popup) { 
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', closeByEsc);
+// };
 
-function closePopup (popup) {
-  document.removeEventListener('keydown', closeByEsc);
-  popup.classList.remove('popup_opened');
-};
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function closePopup (popup) {
+//   document.removeEventListener('keydown', closeByEsc);
+//   popup.classList.remove('popup_opened');
+// };
 
 //----------open and close first popup---------
 
 btnEdit.addEventListener('click', () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-  openPopup(popupEdit)
+  //openPopup(popupEdit)
+  openAndCloseEditPopup.open();
       
   editValidation.resetErrors();           //Очистка ошибок, после открытия попапа. 
   editValidation.toggleButton();            // Валидация кнопки при открытии попапа.
 });
 
-btnCloseEdit.addEventListener('click', () => closePopup(popupEdit));
+//btnCloseEdit.addEventListener('click', () => closePopup(popupEdit));
+//btnCloseEdit.addEventListener('click', () => openAndCloseEditPopup.close());!!!!
 
 //-------Add text from popup to html.------update---------
 
@@ -119,7 +122,10 @@ function handleFormSubmit (evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
-  closePopup(popupEdit);
+  //closePopup(popupEdit);
+  openAndCloseEditPopup.close();
+
+
 }
 
 popupFormEdit.addEventListener ('submit', handleFormSubmit);
