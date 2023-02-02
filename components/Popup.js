@@ -5,7 +5,7 @@ export class Popup {
   }
  //Публичная функция - открывает попап.  Вешает обработчик закрытия по esc.
   open() {
-    this.setEventListeners()
+    //this.setEventListeners()
     this._popup.classList.add('popup_opened')
     document.addEventListener('keydown', this._handleEscClose);
   }
@@ -14,7 +14,7 @@ export class Popup {
     this._popup.classList.remove('popup_opened')
     document.removeEventListener('keydown', this._handleEscClose);  
   }
-   //Приватная функция закрывает попап по нажатию esc 
+   //Приватная функция закрывает попап по нажатию esc. 
   _handleEscClose = (e) => {
     if(e.key === 'Escape') {
       this.close();

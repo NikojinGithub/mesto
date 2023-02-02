@@ -2,6 +2,7 @@ import { FormValidator } from "../components/formValidator.js";
 import { Card } from "../components/card.js";
 import { Section } from '../components/section.js';
 import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
 import { initialCards, validationConfig, popupEdit, btnCloseEdit, popupFormEdit, btnEdit, nameInput, jobInput, 
 profileTitle, profileSubtitle, popupList, popupImg, btnAdd, btnCloseImg, sectionElements, nameInputImg,
 linkInput, popupFormImg, popupPhoto, popupPhotoImage, popupPhotoText, btnClosePhoto } from "../utils/constants.js";
@@ -9,6 +10,23 @@ linkInput, popupFormImg, popupPhoto, popupPhotoImage, popupPhotoText, btnClosePh
 // const popup = document.querySelector('.popup');
 
 const openAndCloseEditPopup = new Popup('.popup_type_edit');
+openAndCloseEditPopup.setEventListeners();
+
+const popupImage = new PopupWithImage('.popup_type_photo')
+popupImage.setEventListeners();
+
+//----------function add image, text and open large image popup------------------------------------- 
+//----------transmitted to creater card from array and transmitted to function create new cards.---
+
+//
+function openPopupImage(name, link) {
+  // popupPhotoImage.src = link;
+  // popupPhotoImage.alt = name;
+  // popupPhotoText.textContent = name;
+  // openPopup(popupPhoto);
+  popupImage.open(name, link);
+}
+
 
 
 //=====Переделать==== Создание карточек. Класс Section.=====Класс сектион не создает карточку, он только вставляет ее в разметку.=====
@@ -29,16 +47,6 @@ const defaultCardsList = new Section({
 defaultCardsList.renderCards();
 //=============================================================================================================
 //const imageTemplate = document.querySelector('#element');
-
-//----------function add image, text and open large image popup------------ 
-//----------transmitted to creater card from array and transmitted to function create new cards.
-
-function openPopupImage(name, link) {
-  popupPhotoImage.src = link;
-  popupPhotoImage.alt = name;
-  popupPhotoText.textContent = name;
-  openPopup(popupPhoto);
-}
 
 //-------------------------add new card------------------------------
 
