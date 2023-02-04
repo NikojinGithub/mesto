@@ -4,9 +4,11 @@ import { Section } from '../components/section.js';
 import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
 import { initialCards, validationConfig, popupEdit, btnCloseEdit, popupFormEdit, btnEdit, nameInput, jobInput, 
 profileTitle, profileSubtitle, popupList, popupImg, btnAdd, btnCloseImg, sectionElements, nameInputImg,
 linkInput, popupFormImg, popupPhoto, popupPhotoImage, popupPhotoText, btnClosePhoto } from "../utils/constants.js";
+
 
 // const popup = document.querySelector('.popup');
 
@@ -27,6 +29,59 @@ const PopupAddCardForm = new PopupWithForm({
 }, '.popup_type_add')
 
 PopupAddCardForm.setEventListeners();
+
+
+const PopupEditCardForm = new PopupWithForm({
+  formSubmit: (data) => {
+
+    userInfo.setUserInfo(data);
+
+    PopupEditCardForm.close() 
+  }
+}, '.popup_type_edit')
+
+PopupEditCardForm.setEventListeners();
+
+
+const userInfo = new UserInfo({
+  userName: '.profile__title', 
+  userInfo: '.profile__subtitle'
+})
+
+console.log(userInfo)
+
+
+//----------open and close first popup---------
+
+btnEdit.addEventListener('click', () => {
+  // nameInput.value = profileTitle.textContent;
+  // jobInput.value = profileSubtitle.textContent;
+  //openPopup(popupEdit)
+  //userInfo.getUserInfo();
+  const { name, info } = userInfo.getUserInfo()
+  nameInput.value = name;
+  jobInput.value = info;
+  PopupEditCardForm.open();
+  //openAndCloseEditPopup.open();
+      
+  editValidation.resetErrors();           //Очистка ошибок, после открытия попапа. 
+  editValidation.toggleButton();            // Валидация кнопки при открытии попапа.
+});
+
+//-------Add text from popup to html.------update---------
+
+// function handleFormSubmit (evt) {
+//   evt.preventDefault();
+//   // profileTitle.textContent = nameInput.value;
+//   // profileSubtitle.textContent = jobInput.value;
+//   //closePopup(popupEdit);
+//   openAndCloseEditPopup.close();
+
+
+// }
+
+// popupFormEdit.addEventListener ('submit', handleFormSubmit);
+
 
 //-------------------------add new card------------------------------
 
@@ -49,19 +104,7 @@ PopupAddCardForm.setEventListeners();
 //   sectionElements.prepend(cardElement);                        
 // };
 
-//-------Add text from popup to html.------update---------
 
-function handleFormSubmit (evt) {
-  evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-  //closePopup(popupEdit);
-  openAndCloseEditPopup.close();
-
-
-}
-
-popupFormEdit.addEventListener ('submit', handleFormSubmit);
 
 //----------function add image, text and open large image popup------------------------------------- 
 //----------transmitted to creater card from array and transmitted to function create new cards.---
@@ -85,8 +128,7 @@ const createdCard = (item) => {
   return element;
 }
 
-
-const cardListSection = document.querySelector('.elements');
+//const cardListSection = document.querySelector('.elements');
 
 const defaultCardsList = new Section({ 
   data: initialCards,
@@ -96,7 +138,7 @@ const defaultCardsList = new Section({
     defaultCardsList.addItemInEnd(createdCard(item));
   }
 },
-  cardListSection
+  '.elements'
 )
 
 defaultCardsList.renderCards();
@@ -115,13 +157,13 @@ addValidation.enableValidation();
 
 // -----close with click overlay--- get all elements popup on page and forEach and add listener for each-----
 
-popupList.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if(evt.target === popup) {
-      //closePopup(popup)!!!!;
-    }
-  });
-});
+// popupList.forEach((popup) => {
+//   popup.addEventListener('mousedown', (evt) => {
+//     if(evt.target === popup) {
+//       //closePopup(popup)!!!!;
+//     }
+//   });
+// });
 
 //-------------------function closeEsc-----------------------------------
 
@@ -145,17 +187,7 @@ popupList.forEach((popup) => {
 //   popup.classList.remove('popup_opened');
 // };
 
-//----------open and close first popup---------
 
-btnEdit.addEventListener('click', () => {
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileSubtitle.textContent;
-  //openPopup(popupEdit)
-  openAndCloseEditPopup.open();
-      
-  editValidation.resetErrors();           //Очистка ошибок, после открытия попапа. 
-  editValidation.toggleButton();            // Валидация кнопки при открытии попапа.
-});
 
 //btnCloseEdit.addEventListener('click', () => closePopup(popupEdit));
 //btnCloseEdit.addEventListener('click', () => openAndCloseEditPopup.close());!!!!
@@ -167,7 +199,7 @@ btnEdit.addEventListener('click', () => {
 btnAdd.addEventListener('click', () => {
   PopupAddCardForm.open();
   //openPopup(popupImg)
-  document.querySelector('.popup__form_type_add').reset();  //Сброс инпутов с последующей их проверкой
+  //document.querySelector('.popup__form_type_add').reset();  //Сброс инпутов с последующей их проверкой
   //resetPopup();                   
   addValidation.resetErrors();     //Очистка ошибок, после открытия попапа.
   addValidation.toggleButton();      //Валидация кнопки при открытии попапа.
@@ -184,9 +216,9 @@ btnAdd.addEventListener('click', () => {
 
 //-------close popup Photo---------------------------
 
-btnClosePhoto.addEventListener('click', () => {
-  closePopup(popupPhoto);;
-});
+// btnClosePhoto.addEventListener('click', () => {
+//   closePopup(popupPhoto);;
+// });
 
 //=====================================================================================================
 
