@@ -1,0 +1,24 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Проект представляет собой одностраничный лендинг на котором вы можете увидеть удивительные места на планете Земля.\r Вы можете добавлять и удалять свои любые места.  \r Можете оценивать уже добавленные фотографии. \r По клику на изображение его можно увеличить.",
+  "main": "index.js",
+  "scripts": {
+   "build": "rd /s /q dist && webpack --mode production",
+   "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikojinGithub/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikojinGithub/mesto/issues"
+  },
+  "homepage": "https://github.com/NikojinGithub/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
