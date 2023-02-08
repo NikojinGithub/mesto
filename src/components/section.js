@@ -5,7 +5,7 @@ export class Section {
     this._itemsArray = data;
     this._renderer = renderer;
 
-    this._containerSelector = document.querySelector(containerSelector);
+    this._container = document.querySelector(containerSelector);
   }
 
 
@@ -19,11 +19,11 @@ export class Section {
 
   // функция для вставки объекта с карточками. Используется с дефолтными карточками.
   addItemInEnd(item) {
-    this._containerSelector.append(item);
+    this._container.append(item);
   }
 
   // функция для вставки созданных карточек. Используется для вставки созданных карточек.
   addItemInBegin(item) {
-    this._containerSelector.prepend(item);
+    this._container.prepend(item);
   }
 }

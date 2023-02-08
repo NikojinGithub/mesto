@@ -35,16 +35,21 @@ export class FormValidator {
 
   //Function check validity inputs.
   _hasInvalidInputs = () => {
-    return this._inputList.some((inputElement) => {
+    return this._inputList.some((inputElement) => { // <========== HERE 
       return !inputElement.validity.valid;
+    //   this._showInputError(inputElement);       // Если добавить вывод ошибки сюда, ошибка убирается.
+    // } else {                                    
+    //   this._hideInputError(inputElement);
+    // }
     });
   };
 
   //Function add or remove text error after validity inputs.
   _validateInput(inputElement) {
-    if (this._hasInvalidInputs(inputElement)) {
-      this._showInputError(inputElement);
-    } else {
+    //if (this._hasInvalidInputs()) { 
+      if(!inputElement.validity.valid) {         // Ошибка нужно делать проверку одного инпута а не всех.  //передавали inputElement
+      this._showInputError(inputElement);       // Ошибка была в методе которым перебирали инпуты. Нет.
+    } else {                                    // был метод some. С методом every работает валидации только 1 инпута
       this._hideInputError(inputElement);
     }
   }

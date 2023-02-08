@@ -64,5 +64,6 @@ export class Card {
   // Function delete element.
   _deleteElement() {
     this._element.remove();
+    this._element = null;
   }
 }
